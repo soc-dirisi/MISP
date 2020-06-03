@@ -1,8 +1,8 @@
-FROM alpine:3.10
+FROM alpine:3.12
 
 # APK INSTALL DEPENDENCIES
 RUN apk add supervisor sudo curl gcc g++ git make autoconf automake libtool openssl redis gnupg musl-dev ; \
-    apk add py3-setuptools py3-redis py3-zmq py3-virtualenv python3-dev py3-lxml ; \
+    apk add py3-setuptools py3-redis py3-virtualenv python3-dev py3-lxml py3-pip py3-pyzmq; \
     apk add apache2 apache2-utils apache2-ssl apache2-ldap php7-apache2 php7-pdo_pgsql php7-pdo_mysql ; \
     apk add php7 php7-mbstring php7-json php7-xml php7-opcache php7-session php-ldap php7-pgsql php7-mysqli php7-pecl-redis php7-simplexml ; \
     apk add libpq libjpeg ruby ; \
@@ -41,10 +41,10 @@ RUN pip3 install .
 WORKDIR /var/www/MISP/cti-python-stix2
 RUN pip3 install .
 
-WORKDIR /var/www/MISP/PyMISP
-RUN pip3 install . ; \
-    BUILD_LIB=1 pip3 install ssdeep ; \
-    pip3 install https://github.com/lief-project/packages/raw/lief-master-latest/pylief-0.9.0.dev.zip
+#WORKDIR /var/www/MISP/PyMISP
+#RUN pip3 install .
+#    BUILD_LIB=1 pip3 install ssdeep ; \
+#    pip3 install https://github.com/lief-project/packages/raw/lief-master-latest/pylief-0.9.0.dev.zip
 
 
 WORKDIR /var/www/MISP
